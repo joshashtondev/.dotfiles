@@ -18,16 +18,17 @@
   };
 
   home.packages = with pkgs; [
-    spotify
-    claude-code
-    mc
-    discord
-    asciinema
-    intelli-shell
     aider-chat
     animdl
-    jrnl
+    asciinema
+    claude-code
+    discord
     freetube
+    intelli-shell
+    jrnl
+    keepass
+    mc
+    spotify
 
     (pkgs.writeShellScriptBin "lock-screen" ''
       # Color palette mapped to i3lock-color format (RRGGBBAA)
