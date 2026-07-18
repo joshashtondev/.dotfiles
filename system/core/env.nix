@@ -29,6 +29,7 @@
       unix = "sudo nixos-rebuild switch --flake $HOME/.dotfiles#thinkpad";
       ehome = "nvim $HOME/.dotfiles/home/jashton.nix";
       l = "ls -la";
+      ports = "cat $HOME/.dotfiles/ports.registry";
     };
 
     ohMyZsh = {

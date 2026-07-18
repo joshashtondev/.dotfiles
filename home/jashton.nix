@@ -24,11 +24,115 @@
     claude-code
     discord
     freetube
+    gemini-cli
     intelli-shell
     jrnl
     keepass
     mc
+    scrot
     spotify
+
+    (pkgs.writeShellScriptBin "find-open-port" ''
+      if [ -z "$1" ]; then
+        echo "Please provide an application name, project directory, or other identifier."
+        echo "  Usage: find-open-port $HOME/dev/some-project"
+        echo "  Usage: find-open-port some-app"
+        
+        exit 1
+      fi
+
+      APP_NAME=$1
+      REGISTRY_FILE=$HOME/.dotfiles/ports.registry
+
+      MIN_PORT=8000
+      MAX_PORT=8999
+      MAX_RETRIES=50
+
+      echo "Searching for available port between $MIN_PORT and $MAX_PORT for $APP_NAME..."
+
+      for ((i=1; i<=MAX_RETRIES; i++)); do
+        RANDOM_PORT=$(shuf -i $MIN_PORT-$MAX_PORT -n 1)
+
+        if ! ss -tuln | grep -E -q ":$RANDOM_PORT\b"; then
+          if [ -f "$REGISTRY_FILE" ] && grep -q "\b$RANDOM_PORT\b" "$REGISTRY_FILE"; then
+            continue
+          fi
+
+          echo "$APP_NAME : $RANDOM_PORT" >> "$REGISTRY_FILE"
+          echo -e "\nSuccessfully wrote '$APP_NAME : $RANDOM_PORT' to $REGISTRY_FILE"
+          exit 0
+        fi
+      done
+
+      echo -e "\nError: Could not find an open port between $MIN_PORT and $MAX_PORT after $MAX_RETRIES attempts."
+      exit 1
+    '')
+
+    (pkgs.writeShellScriptBin "wipe" ''
+      exit # Not ready for production use.
+
+      LOG_FILE=/dev/null
+    
+      if [[ "$1" == "-l" || "$1" == "--log-file" && -f "$2" ]]; then
+        echo "Log file successfully set to $2"
+        LOG_FILE="$2"
+      fi
+
+      if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+        echo "wipe"
+        echo "Created by Josh Ashton"
+        echo "me@joshashton.dev\n"
+        echo "Run as root or sudo. Use with caution: this command will"
+        echo -e "irrevocably erase data.\n"
+        echo "Usage:"
+        echo -e "  wipe\n  Equivalent to running `wipe --dry-run`"
+
+        echo -e "  wipe { -h | --help }\n  Print this help statement."
+
+        echo -e "  wipe { -f | --log-file } /path/to/filename.log /dev/target\n  Set the log"
+        echo "    location explicitly for the next or current use."
+
+        echo -e "  wipe --force /dev/target\nWipe the target drive without confirmation."
+        echo "    Cannot be used with --all."
+
+        echo -e "  wipe --all\nAfter verifying system install disk to exclude, wipe all"
+        echo "    other attached drives with appropriate methods by bus/media type."
+        echo "    Cannot be used with --force."
+
+        echo -e "  wipe --dry-run /dev/target\nRefresh drive map and check if target is detected,"
+        echo "    frozen, or locked. Unfreeze if needed. Determine wipe type (ie. "
+        echo "    nvme format /dev/target --ses=[0|1|2]; hdparm --security-erase /dev/target;"
+        echo "    dd if=/dev/zero of=/dev/target bs=4M status=progress;) and write S.M.A.R.T."
+        echo "    test to serial_number.log."
+
+        echo -e "  wipe --self\nSelf-destruct system disk. The same as wipe --self"
+        echo "    --force. Use with extreme caution, for emergency use."
+
+        echo -e "\n\nConfiguration Options:"
+        echo "  wipe { -l | --log-dir } /path/to/log/location\n  Set a default"
+        echo "  location to save log files. The filenames will be"
+        echo "  serial_number.log by default."
+      fi
+
+      if -z "$1"; then
+        echo "TODO: Dry run."
+      fi
+
+      if lsblk | grep -q "$1"; then
+        read -p "Target $1 found. Confirm Basic Secure Erase. (Y/n): " -r -n 1
+        
+        if [[ "$REPLY" == "n" ]]; then
+          echo "Cancelling Basic Secure Erase."
+          exit
+        fi
+
+        sudo nvme format "$1" --ses=1 --force | tee $LOG_FILE
+        sudo smartctl -a "$1" | tee -a $LOG_FILE
+      else
+        echo 1 > /sys/bus/pci/rescan
+        
+      fi
+    '')
 
     (pkgs.writeShellScriptBin "lock-screen" ''
       # Color palette mapped to i3lock-color format (RRGGBBAA)
@@ -135,6 +239,6 @@
     '';
   };
 
-  home.stateVersion = "25.11"; # DO NOT CHANGE
+  home.stateVersion = "26.05"; # DO NOT CHANGE
 }
 

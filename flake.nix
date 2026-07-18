@@ -1,15 +1,21 @@
 {
-  description = "My multi-device NixOS configuration.";
+  description = "System Configuration.";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    flake-utils.url = "github:numtide/flake-utils";
+
+    linger = {
+      url = "github:mindsbackyard/linger-flake";
+      inputs.flake-utils.follows = "flake-utils";
+    };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   
-  outputs = { self, nixpkgs, home-manager, ... }: {
+  outputs = { self, nixpkgs, flake-utils, home-manager, ... }: {
     nixosConfigurations = {
       thinkpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
