@@ -2,8 +2,12 @@
 
 {
   services = {
-    displayManager = {
-      ly.enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    gnome = {
+      core-apps.enable = true;
+      core-developer-tools.enable = true;
+      games.enable = true;
     };
 
     xserver = {
@@ -27,13 +31,6 @@
       };
     };
 
-    picom = {
-      enable = true;
-      backend = "glx";
-      vSync = true;
-    };
-
-
     libinput = {
       enable = true;
     };
@@ -46,13 +43,5 @@
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;
     blueman.enable = true;
-    pipewire = {
-      enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-      pulse.enable = true;
-    };
   };
 }

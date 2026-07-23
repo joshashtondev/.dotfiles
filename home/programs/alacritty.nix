@@ -16,7 +16,7 @@
           family = "Hack Nerd Font";
           style = "Mono";
         };
-        size = 8.0;
+        size = 14.0;
       };
 
       colors = {

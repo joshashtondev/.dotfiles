@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" "uvcvideo" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -25,12 +25,46 @@
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/332e7db3-3f68-4fd7-be2a-0d091ac936ae"; }
-    ];
+    [ { device = "/dev/disk/by-uuid/332e7db3-3f68-4fd7-be2a-0d091ac936ae"; } ];
+
+  services.udev.extraRules = ''
+    SUBSYSTEM=="video4linux", ATTRS{interface}=="Integrated IR Camera", ATTR{index}=="0", SYMLINK+="video-ir"
+  '';
+
+  services.howdy = {
+    enable = true;
+    control = "sufficient";
+    settings = {
+      video = {
+        device_path = "/dev/video-ir";
+      };
+    };
+  };
+
+  services.linux-enable-ir-emitter.enable = true;
+
+  powerManagement.resumeCommands = ''
+    ${pkgs.linux-enable-ir-emitter}/bin/linux-enable-ir-emitter run
+  '';
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware = {
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    bluetooth.enable = true;
+    sensor.iio.enable = true;
+
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+
+      settings = {
+        General = {
+          Experimental = true;
+          KernelExperimental = true;
+
+          ControllerMode = "dual";
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
+    };
   };
 }

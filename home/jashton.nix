@@ -13,24 +13,24 @@
     # This file exists solely to prevent the zsh-newuser-install prompt.
   '';
   
-  home.sessionVariables = {
-    WINIT_X11_SCALE_FACTOR = "1.0";
-  };
-
   home.packages = with pkgs; [
     aider-chat
     animdl
     asciinema
     claude-code
     discord
+    ffmpeg
     freetube
     gemini-cli
     intelli-shell
     jrnl
     keepass
+    libreoffice
     mc
     scrot
     spotify
+    vlc
+    yt-dlp
 
     (pkgs.writeShellScriptBin "find-open-port" ''
       if [ -z "$1" ]; then

@@ -8,6 +8,10 @@
     nerd-fonts.hack
   ];
 
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
   };
@@ -26,10 +30,10 @@
 
     shellAliases = {
       enix = "nvim $HOME/.dotfiles/flake.nix";
-      unix = "sudo nixos-rebuild switch --flake $HOME/.dotfiles#thinkpad";
       ehome = "nvim $HOME/.dotfiles/home/jashton.nix";
       l = "ls -la";
       ports = "cat $HOME/.dotfiles/ports.registry";
+      accentum = "bluetoothctl connect 80:C3:BA:50:43:DF";
     };
 
     ohMyZsh = {
