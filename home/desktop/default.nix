@@ -1,11 +1,12 @@
-{ config, pkgs, ... }:
+{ config, dms, pkgs, ... }:
 
 {
   imports = [
-    ./dunst.nix
-    ./gnome.nix
-    ./i3.nix
-    ./polybar.nix
-    ./rofi.nix
+    ./niri.nix
+    #./dunst.nix
+    #./gnome.nix
+    #./i3.nix
+    #./polybar.nix
+    #./rofi.nix
   ];
 }

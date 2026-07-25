@@ -57,6 +57,7 @@
   hardware = {
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     sensor.iio.enable = true;
+    graphics.enable = true;
 
     bluetooth = {
       enable = true;

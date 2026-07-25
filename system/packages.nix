@@ -84,4 +84,11 @@ $VER"
 
   programs.firefox.enable = true;
   programs.thunar.enable = true;
+
+
+  # Optional: Binary cache for pre-built Niri binaries to save build time
+  nix.settings = {
+    substituters = [ "https://niri.cachix.org" ];
+    trusted-public-keys = [ "niri.cachix.org-1:W3MxdgwBhbNEJHBLAjjkd24hwyLrxVwurqi23v4YBoxs=" ];
+  };
 }
