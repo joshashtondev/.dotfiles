@@ -1,7 +1,8 @@
-{ config, dms, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
+    #./kde.nix
     ./niri.nix
     #./dunst.nix
     #./gnome.nix

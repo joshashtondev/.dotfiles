@@ -6,7 +6,7 @@
     isNormalUser = true;
     description = "Josh Ashton";
     group = "jashton";
-    extraGroups = [ "networkmanager" "wheel" "tss" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "tss" "video" "audio" "input" ];
 
     shell = pkgs.zsh;
   };

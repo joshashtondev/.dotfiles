@@ -1,49 +1,47 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
+let
+  # Instantiate the unstable package set for your system architecture
+  unstable = import inputs.nixpkgs-unstable {
+    system = pkgs.system;
+    config.allowUnfree = true; 
+  };
+in
 {
-  xdg.portal = {
+  programs.niri = {
     enable = true;
-    config.common = {
-      # Direct camera and permission requests strictly to GNOME
-      "org.freedesktop.impl.portal.Camera" = "gnome";
-      "org.freedesktop.impl.portal.Access" = "gnome";
-      
-      # Keeps your existing layout working
-      "org.freedesktop.impl.portal.Screenshot" = "gnome";
-      "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+    # Tell the Niri module to use the unstable package directly from the niri-flake
+    package = inputs.niri.packages.${pkgs.system}.niri-unstable;
+  };
+
+  programs.dsearch.enable = true;
+
+  programs.dms-shell = {
+    enable = true;
+    enableSystemMonitoring = true;
+    enableVPN = true;            
+    enableDynamicTheming = true;
+    enableAudioWavelength = true;
+    enableCalendarEvents = true;
+
+    systemd = {
+      enable = false;
+      restartIfChanged = true;
+    };
+
+    quickshell.package = unstable.quickshell;
+
+    plugins = {
+      developerUtilities.enable = true;
+      batteryPlus.enable = true;
+      mediaDownloader.enable = true;
+      dankBatteryAlerts.enable = true;
+      dmsThemeSync.enable = true;
+      dmsPass.enable = true;
     };
   };
 
   services = {
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-    gnome = {
-      core-apps.enable = true;
-      core-developer-tools.enable = true;
-      games.enable = true;
-    };
-
-    xserver = {
-      enable = true;
-
-      xkb = {
-        variant = "";
-        layout = "us";
-      };
-
-      windowManager.i3 = {
-        enable = true;
-        extraPackages = with pkgs; [
-          brightnessctl
-          dmenu
-          i3lock-color
-          playerctl
-          rofi
-          xautolock
-        ];
-      };
-    };
-
     libinput = {
       enable = true;
     };
@@ -52,6 +50,7 @@
       enable = false;
     };
 
+    upower.enable = true;
     printing.enable = true;
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;

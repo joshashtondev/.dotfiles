@@ -13,16 +13,11 @@
     firefox
     git
     github-cli
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.caffeine
-    gnomeExtensions.clipboard-indicator
-    gnomeExtensions.dash-to-panel
-    gnomeExtensions.gjs-osk
-    gnomeExtensions.gsconnect
-    gnomeExtensions.just-perfection
-    gnomeExtensions.removable-drive-menu
-    gnome-keyring
-    gnome-network-displays
+    (google-chrome.override {
+      commandLineArgs = [
+        "--disable-pinch"
+      ];
+    })
     google-chrome
     libnotify
     mypy
@@ -30,13 +25,13 @@
     nitrogen
     pasystray
     picom
-    polkit_gnome
     pulseaudioFull
     rnote
     tldr
     tmux
     unrar
     unzip
+    upower
     v4l-utils
     vim
     wget
@@ -74,21 +69,18 @@
         exit 0
       fi
 
+      echo "Append to default commit message? Hit enter to skip."
+      read -r msg_to_append
+
       ${pkgs.git}/bin/git add -A
       ${pkgs.git}/bin/git commit -m "nixos: gen $GEN @ $(hostname) — $TIMESTAMP
+$VER
 
-$VER"
+$msg_to_append"
       ${pkgs.git}/bin/git push
     '')
   ];
 
   programs.firefox.enable = true;
   programs.thunar.enable = true;
-
-
-  # Optional: Binary cache for pre-built Niri binaries to save build time
-  nix.settings = {
-    substituters = [ "https://niri.cachix.org" ];
-    trusted-public-keys = [ "niri.cachix.org-1:W3MxdgwBhbNEJHBLAjjkd24hwyLrxVwurqi23v4YBoxs=" ];
-  };
 }

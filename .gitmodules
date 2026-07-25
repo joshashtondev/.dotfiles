@@ -1,0 +1,3 @@
+[submodule "plasma-manager"]
+	path = plasma-manager
+	url = https://github.com/nix-community/plasma-manager

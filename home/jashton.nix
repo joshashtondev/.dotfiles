@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [
@@ -12,6 +12,13 @@
     # Zsh is configured globally at the NixOS system level.
     # This file exists solely to prevent the zsh-newuser-install prompt.
   '';
+
+  home.sessionVariables = {
+    NIXOS_OZONE_WL = "1";                    # Forces Electron/Chromium apps to use Wayland natively
+    GTK_IM_MODULE = "wayland";               # Forces GTK apps to use Wayland text-input protocols
+    QT_IM_MODULE = "wayland";                # Forces Qt apps to use Wayland text-input protocols
+    TEXT_INPUT_PRESENT = "1";                # Explicitly signals virtual keyboard capability to the shell
+  };
   
   home.packages = with pkgs; [
     aider-chat
@@ -28,6 +35,7 @@
     libreoffice
     mc
     scrot
+    steam
     spotify
     vlc
     yt-dlp
