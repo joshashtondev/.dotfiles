@@ -41,6 +41,7 @@ in
     settings = {
       # Autostart DMS if you prefer launching it directly from Niri instead of systemd
       spawn-at-startup = [
+        { command = [ "dms" "run" ]; }
         { command = [ "${launch-lisgd}/bin/launch-lisgd" ]; } # Spawns the daemon
         { command = [ "${launch-wvkbd}/bin/launch-wvkbd" ]; }
       ];
@@ -71,11 +72,10 @@ in
         { # All windows
           geometry-corner-radius = {
             bottom-left = 25.0;
-            bottom-right = 0.0;
-            top-right = 0.0;
+            bottom-right = 25.0;
+            top-right = 25.0;
             top-left = 25.0;
           };
-
 
           draw-border-with-background = true;
           clip-to-geometry = true;

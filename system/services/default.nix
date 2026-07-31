@@ -18,14 +18,14 @@ in
     package = inputs.niri.packages.${pkgs.system}.niri-unstable;
   };
 
-  services.displayManager.dms-greeter = {
+  programs.dsearch.enable = true;
+
+  programs.dank-material-shell.greeter = {
     enable = true;
     compositor.name = "niri";
 
-    configHome = "/home/jashton";
+    #configHome = "/home/jashton";
   };
-
-  programs.dsearch.enable = true;
 
   programs.dms-shell = {
     enable = true;
@@ -36,7 +36,7 @@ in
     enableCalendarEvents = true;
 
     systemd = {
-      enable = false;
+      enable = true;
       restartIfChanged = true;
     };
 
