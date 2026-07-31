@@ -28,9 +28,9 @@ let
       PRIMARY=$(jq -r '.["colors"]["dark"]["surface_container_lowest"]' "$THEME_CACHE" | tr -d '#')
       ON_PRIMARY=$(jq -r '.["colors"]["dark"]["on_background"]' "$THEME_CACHE" | tr -d '#')
       
-      wvkbd-mobintl --hidden --bg "$BG" --press "$BG" --fg "$FG" --text "$TXT" --fg-sp "$PRIMARY" --text-sp "$ON_PRIMARY" -L 300
+      wvkbd-mobintl --hidden --auto --no-popup --bg "$BG" --press "$BG" --fg "$FG" --text "$TXT" --fg-sp "$PRIMARY" --text-sp "$ON_PRIMARY" -L 300
     else
-      wvkbd-mobintl --hidden
+      wvkbd-mobintl --hidden --auto --no-popup
     fi
   '';
 in
