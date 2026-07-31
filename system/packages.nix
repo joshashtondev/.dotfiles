@@ -19,6 +19,7 @@
       ];
     })
     google-chrome
+    jq
     libnotify
     mypy
     networkmanagerapplet

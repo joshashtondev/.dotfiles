@@ -35,7 +35,7 @@ let
         -L 300
     else
       # Default fallback if the shell cache isn't built yet
-      ${pkgs.wvkbd}/bin/wvkbd-wayland --layer overlay --hidden
+      ${pkgs.wvkbd}/bin/wvkbd-mobintl --layer overlay --hidden
     fi
   '';
 in
