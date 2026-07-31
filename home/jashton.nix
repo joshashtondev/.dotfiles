@@ -38,7 +38,6 @@
     steam
     spotify
     vlc
-    wvkbd
     yt-dlp
 
     (pkgs.writeShellScriptBin "find-open-port" ''
