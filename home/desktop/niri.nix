@@ -13,7 +13,7 @@ let
         -g "3,RL,*,*,P,niri msg action focus-column-right && sleep 0.4" \
         -g "3,UD,*,*,P,niri msg action focus-workspace-up && sleep 0.4" \
         -g "3,DU,*,*,P,niri msg action focus-workspace-down && sleep 0.4" \
-        -g "4,DU,*,*,P,dms ipc spotlight toggle && sleep 0.4"
+        -g "4,DU,*,*,P,dms ipc spotlight toggle && sleep 0.4" \
         -g "2,DU,B,*,pkill -RTMIN wvkbd-mobintl"
     fi
   '';
