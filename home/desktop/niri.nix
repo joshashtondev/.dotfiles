@@ -16,6 +16,28 @@ let
         -g "4,DU,*,*,P,dms ipc spotlight toggle && sleep 0.4"
     fi
   '';
+
+  launch-wvkbd = pkgs.writeShellScriptBin "launch-wvkbd" ''
+    # Adjust this path to wherever dank-material-shell drops its color file
+    THEME_CACHE="$HOME/.cache/DankMaterialShell/dms-colors.json"
+    
+    if [ -f "$THEME_CACHE" ]; then
+      # Parse hex tokens directly out of the active shell profile
+      BG=$(jq -r '.colors.surface' "$THEME_CACHE")
+      FG=$(jq -r '.colors.surface_container' "$THEME_CACHE")
+      TXT=$(jq -r '.colors.on_surface' "$THEME_CACHE")
+      PRIMARY=$(jq -r '.colors.primary' "$THEME_CACHE")
+      ON_PRIMARY=$(jq -r '.colors.on_primary' "$THEME_CACHE")
+      
+      ${pkgs.wvkbd}/bin/wvkbd-mobintl --layer overlay --hidden \
+        --bg "$BG" --fg "$FG" --text "$TXT" \
+        --fg-sp "$PRIMARY" --text-sp "$ON_PRIMARY" \
+        -L 300
+    else
+      # Default fallback if the shell cache isn't built yet
+      ${pkgs.wvkbd}/bin/wvkbd-wayland --layer overlay --hidden
+    fi
+  '';
 in
 
 {
@@ -24,8 +46,9 @@ in
     settings = {
       # Autostart DMS if you prefer launching it directly from Niri instead of systemd
       spawn-at-startup = [
-        { command = [ "dms" "run" ]; }
+        { command = [ "${pkgs.dms}/bin/dms" "run" ]; }
         { command = [ "${launch-lisgd}/bin/launch-lisgd" ]; } # Spawns the daemon
+        { command = [ "${launch-wvkbd}/bin/launch-wvkbd" ]; }
       ];
 
       input = {
