@@ -59,6 +59,7 @@ in
     vlc
     wtype
     yt-dlp
+    zathura
 
     custom_wvkbd
 
