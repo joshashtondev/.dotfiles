@@ -92,6 +92,7 @@ in
       binds = with config.lib.niri.actions; {
         # Launchers & Session Control
         "Mod+Return".action.spawn = [ "alacritty" ];
+        "Mod+P".action.spawn = [ "pkill" "-RTMIN" "wvkbd-mobintl" ];
         "Mod+Space".action.spawn = [ "dms" "ipc" "spotlight" "toggle" ];
         "Mod+X".action.close-window = [];
         "Mod+F".action.fullscreen-window = [];
