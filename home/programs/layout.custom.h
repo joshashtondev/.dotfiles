@@ -1140,7 +1140,8 @@ static struct key keys_landscape[] = {
   {"Ctr", "Ctr", 1.0, Mod, Ctrl, .scheme = 1},
   {",", ",", 1.0, Code, KEY_COMMA, .scheme = 1},
   {"🙂", "🙂", 1.0, Layout, 0, &layouts[Emoji]},
-  {"", "", 5.0, Code, KEY_SPACE, .scheme = 1},
+  {"", "", 4.0, Code, KEY_SPACE, .scheme = 1},
+  {"Tab", "Tab", 1.0, Code, KEY_SPACE, .scheme = 1},
   {".", ".", 1.0, Code, KEY_DOT, .scheme = 1},
   {"Enter", "Enter", 2.0, Code, KEY_ENTER, .scheme = 1},
 
