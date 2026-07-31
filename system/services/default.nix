@@ -8,6 +8,10 @@ let
   };
 in
 {
+  imports = [
+    inputs.dms.nixosModules.greeter
+  ];
+
   programs.niri = {
     enable = true;
     # Tell the Niri module to use the unstable package directly from the niri-flake

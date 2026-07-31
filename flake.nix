@@ -16,6 +16,11 @@
       flake = false;
     };
 
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     dms-plugin-registry = {
       url = "github:AvengeMedia/dms-plugin-registry";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,7 +32,7 @@
     };
   };
   
-  outputs = { nixpkgs, home-manager, niri, dms-plugin-registry, danksearch, wvkbd-src, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, niri, dms, dms-plugin-registry, danksearch, wvkbd-src, ... }@inputs: {
     nixosConfigurations = {
       thinkpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
