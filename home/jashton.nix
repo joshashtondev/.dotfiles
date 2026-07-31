@@ -52,6 +52,7 @@ in
     keepass
     libreoffice
     mc
+    pdftk
     scrot
     steam
     spotify
