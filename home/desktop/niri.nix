@@ -46,6 +46,10 @@ in
         { command = [ "${launch-wvkbd}/bin/launch-wvkbd" ]; }
       ];
 
+      hotkey-overlay = {
+        skip-at-startup = true;
+      };
+
       input = {
         keyboard.xkb.layout = "us";
         touchpad = {
