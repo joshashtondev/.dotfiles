@@ -14,6 +14,13 @@ in
     package = inputs.niri.packages.${pkgs.system}.niri-unstable;
   };
 
+  services.displayManager.dms-greeter = {
+    enable = true;
+    compositor.name = "niri";
+
+    configHome = "/home/jashton";
+  };
+
   programs.dsearch.enable = true;
 
   programs.dms-shell = {
