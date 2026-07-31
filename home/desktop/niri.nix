@@ -41,7 +41,6 @@ in
     settings = {
       # Autostart DMS if you prefer launching it directly from Niri instead of systemd
       spawn-at-startup = [
-        { command = [ "dms" "run" ]; }
         { command = [ "${launch-lisgd}/bin/launch-lisgd" ]; } # Spawns the daemon
         { command = [ "${launch-wvkbd}/bin/launch-wvkbd" ]; }
       ];
