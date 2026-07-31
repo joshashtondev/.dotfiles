@@ -36,7 +36,18 @@ let
 in
 
 {
-  # 2. Enable & Configure Niri
+
+  xdg.portal = {
+    enable = true;
+    # Use gtk or kde based on your preferred file picker dialog
+    config.niri = {
+      "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ]; # or "kde"
+    };
+    
+    # Ensure the GTK portal is installed
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
   programs.niri = {
     settings = {
       # Autostart DMS if you prefer launching it directly from Niri instead of systemd
