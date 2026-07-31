@@ -2,6 +2,7 @@
 
 {
   users.groups.jashton = {};
+  users.groups.greetd = {};
   users.users.jashton = {
     isNormalUser = true;
     description = "Josh Ashton";
@@ -13,5 +14,11 @@
 
   users.users.root = {
     shell = pkgs.zsh;
+  };
+
+  users.extraUsers.greetd = {
+    isSystemUser = true;
+    group = "greetd";
+    extraGroups = [ "input" ];
   };
 }

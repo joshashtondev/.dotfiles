@@ -18,4 +18,9 @@
       tctiEnvironment.enable = true;
     };
   };
+
+
+  services.udev.extraRules = ''
+    KERNEL=="uinput", MODE="0660", GROUP="input", OPTIONS+="static_node=uinput"
+  '';
 }

@@ -35,6 +35,7 @@
 
   services.udev.extraRules = ''
     SUBSYSTEM=="video4linux", ATTRS{interface}=="Integrated IR Camera", ATTR{index}=="0", SYMLINK+="video-ir"
+    KERNEL=="uinput", MODE="0660", GROUP="input", OPTIONS+="static_node=uinput"
   '';
 
   services.howdy = {
