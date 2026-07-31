@@ -1,8 +1,8 @@
 #ifndef config_h_INCLUDED
 #define config_h_INCLUDED
 
-#define DEFAULT_FONT "Sans 14"
-#define DEFAULT_ROUNDING 5
+#define DEFAULT_FONT "Hack Nerd Font Mono 12"
+#define DEFAULT_ROUNDING 12
 #define SHIFT_SPACE_IS_TAB
 static const int transparency = 255;
 
@@ -35,8 +35,8 @@ struct clr_scheme schemes[] = {
 
 /* layers is an ordered list of layouts, used to cycle through */
 static enum layout_id layers[] = {
-  Full, // First layout is the default layout on startup
-  Special,
+  Landscape, // First layout is the default layout on startup
+  LandscapeSpecial,
   NumLayouts // signals the last item, may not be omitted
 };
 
