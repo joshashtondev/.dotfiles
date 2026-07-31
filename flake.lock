@@ -188,7 +188,24 @@
         "home-manager": "home-manager",
         "niri": "niri",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "wvkbd-src": "wvkbd-src"
+      }
+    },
+    "wvkbd-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784927765,
+        "narHash": "sha256-Et1k3M8L/r5WnoNOuiCzVVgJrpXtWSbIUI+2/njiwj0=",
+        "owner": "jjsullivan5196",
+        "repo": "wvkbd",
+        "rev": "6b41504a0cb58fd1163fa44692398fbd61f8905f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jjsullivan5196",
+        "repo": "wvkbd",
+        "type": "github"
       }
     },
     "xwayland-satellite-stable": {

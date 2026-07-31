@@ -1,5 +1,23 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
+let
+  # Compile your custom wvkbd build
+  custom_wvkbd = pkgs.wvkbd.overrideAttrs (oldAttrs: {
+    # Pin the package version to the exact commit from your flake input
+    src = inputs.wvkbd-src;
+    version = "custom-git";
+
+    # Choose your preferred layout layout (e.g., mobintl, standard, cyrillic)
+    makeFlags = (oldAttrs.makeFlags or []) ++ [ "LAYOUT=mobintl" ];
+
+    # Optional: Swap out the layout with your own config.h file if you have one
+    preBuild = ''
+      cp ${./programs/layout.custom.h} layout.mobintl.h
+      cp ${./programs/config.custom.h} config.mobintl.h
+      cp ${./programs/keymap.custom.h} keymap.mobintl.h
+    '';
+  });
+in
 {
   imports = [
     ./programs
@@ -38,7 +56,10 @@
     steam
     spotify
     vlc
+    wtype
     yt-dlp
+
+    custom_wvkbd
 
     (pkgs.writeShellScriptBin "find-open-port" ''
       if [ -z "$1" ]; then

@@ -11,6 +11,11 @@
 
     niri.url = "github:sodiboo/niri-flake";
 
+    wvkbd-src = {
+      url = "github:jjsullivan5196/wvkbd";
+      flake = false;
+    };
+
     dms-plugin-registry = {
       url = "github:AvengeMedia/dms-plugin-registry";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +27,7 @@
     };
   };
   
-  outputs = { nixpkgs, home-manager, niri, dms-plugin-registry, danksearch, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, niri, dms-plugin-registry, danksearch, wvkbd-src, ... }@inputs: {
     nixosConfigurations = {
       thinkpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

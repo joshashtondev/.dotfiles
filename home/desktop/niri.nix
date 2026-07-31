@@ -14,28 +14,23 @@ let
         -g "3,UD,*,*,P,niri msg action focus-workspace-up && sleep 0.4" \
         -g "3,DU,*,*,P,niri msg action focus-workspace-down && sleep 0.4" \
         -g "4,DU,*,*,P,dms ipc spotlight toggle && sleep 0.4"
+        -g "2,DU,B,*,pkill -RTMIN wvkbd-mobintl"
     fi
   '';
 
   launch-wvkbd = pkgs.writeShellScriptBin "launch-wvkbd" ''
-    # Adjust this path to wherever dank-material-shell drops its color file
     THEME_CACHE="$HOME/.cache/DankMaterialShell/dms-colors.json"
-    
+
     if [ -f "$THEME_CACHE" ]; then
-      # Parse hex tokens directly out of the active shell profile
-      BG=$(jq -r '.colors.surface' "$THEME_CACHE")
-      FG=$(jq -r '.colors.surface_container' "$THEME_CACHE")
-      TXT=$(jq -r '.colors.on_surface' "$THEME_CACHE")
-      PRIMARY=$(jq -r '.colors.primary' "$THEME_CACHE")
-      ON_PRIMARY=$(jq -r '.colors.on_primary' "$THEME_CACHE")
+      BG=$(jq -r '.["colors"]["dark"]["background"]' "$THEME_CACHE" | tr -d '#')
+      FG=$(jq -r '.["colors"]["dark"]["surface_container_lowest"]' "$THEME_CACHE" | tr -d '#')
+      TXT=$(jq -r '.["colors"]["dark"]["on_background"]' "$THEME_CACHE" | tr -d '#')
+      PRIMARY=$(jq -r '.["colors"]["dark"]["surface_container_lowest"]' "$THEME_CACHE" | tr -d '#')
+      ON_PRIMARY=$(jq -r '.["colors"]["dark"]["on_background"]' "$THEME_CACHE" | tr -d '#')
       
-      ${pkgs.wvkbd}/bin/wvkbd-mobintl --layer overlay --hidden \
-        --bg "$BG" --fg "$FG" --text "$TXT" \
-        --fg-sp "$PRIMARY" --text-sp "$ON_PRIMARY" \
-        -L 300
+      wvkbd-mobintl --hidden --bg "$BG" --press "$BG" --fg "$FG" --text "$TXT" --fg-sp "$PRIMARY" --text-sp "$ON_PRIMARY" -L 300
     else
-      # Default fallback if the shell cache isn't built yet
-      ${pkgs.wvkbd}/bin/wvkbd-mobintl --layer overlay --hidden
+      wvkbd-mobintl --hidden
     fi
   '';
 in
