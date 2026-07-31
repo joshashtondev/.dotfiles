@@ -24,7 +24,7 @@ in
     enable = true;
     compositor.name = "niri";
 
-    #configHome = "/home/jashton";
+    configHome = "/home/jashton";
   };
 
   programs.dms-shell = {
@@ -36,7 +36,7 @@ in
     enableCalendarEvents = true;
 
     systemd = {
-      enable = true;
+      enable = false;
       restartIfChanged = true;
     };
 
