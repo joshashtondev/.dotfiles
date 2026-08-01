@@ -12,4 +12,6 @@
     virtualbox.host.enable = true;
     libvirtd.enable = true;
   };
+
+  networking.firewall.trustedInterfaces = [ "waydroid0" ];
 }
