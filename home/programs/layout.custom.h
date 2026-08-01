@@ -1139,10 +1139,11 @@ static struct key keys_landscape[] = {
   {"?123", "?123", 1.0, Layout, 0, &layouts[LandscapeSpecial]},
   {"Ctr", "Ctr", 1.0, Mod, Ctrl, .scheme = 1},
   {",", ",", 1.0, Code, KEY_COMMA, .scheme = 1},
-  {"🙂", "🙂", 1.0, Layout, 0, &layouts[Emoji]},
-  {"", "", 4.0, Code, KEY_SPACE, .scheme = 1},
-  {"Tab", "Tab", 1.0, Code, KEY_TAB, .scheme = 1},
   {".", ".", 1.0, Code, KEY_DOT, .scheme = 1},
+  {"🙂", "🙂", 0.75, Layout, 0, &layouts[Emoji]},
+  {"", "", 4.0, Code, KEY_SPACE, .scheme = 1},
+  {"Tab", "Tab", 0.75, Code, KEY_TAB, .scheme = 1},
+  {"→", "→", 0.75, Code, KEY_RIGHT, .scheme = 1},
   {"Enter", "Enter", 2.0, Code, KEY_ENTER, .scheme = 1},
 
   /* end of layout */
