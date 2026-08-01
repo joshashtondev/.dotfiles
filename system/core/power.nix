@@ -6,7 +6,7 @@
   services.power-profiles-daemon.enable = false;
 
   services.tlp = {
-    enable = false;
+    enable = true;
     settings = {
       USB_AUTOSUSPEND = 0;
 
