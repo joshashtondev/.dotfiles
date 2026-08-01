@@ -41,8 +41,8 @@ in
   home.packages = with pkgs; [
     aider-chat
     animdl
+    antigravity
     asciinema
-    claude-code
     discord
     ffmpeg
     freetube
@@ -52,6 +52,7 @@ in
     keepass
     libreoffice
     mc
+    opencode
     pdftk
     scrot
     steam
