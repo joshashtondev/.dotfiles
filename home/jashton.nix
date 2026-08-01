@@ -59,6 +59,7 @@ in
     spotify
     vlc
     wtype
+    xwayland-satellite
     yt-dlp
     zathura
 
