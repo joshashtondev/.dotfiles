@@ -36,6 +36,7 @@
     v4l-utils
     vim
     wget
+    wl-clipboard
     xclip
     xournalpp
 

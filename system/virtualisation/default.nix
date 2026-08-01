@@ -7,6 +7,8 @@
       dockerCompat = true;
     };
 
+    waydroid.enable = true;
+
     virtualbox.host.enable = true;
     libvirtd.enable = true;
   };
