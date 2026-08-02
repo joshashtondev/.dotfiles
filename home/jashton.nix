@@ -49,7 +49,6 @@ in
     gemini-cli
     intelli-shell
     jrnl
-    keepass
     libreoffice
     mc
     opencode

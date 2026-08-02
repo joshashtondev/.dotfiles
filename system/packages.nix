@@ -24,7 +24,7 @@
     networkmanagerapplet
     nitrogen
     ollama
-    pass
+    (pass.withExtensions (exts: [ exts.pass-import ]))
     pasystray
     picom
     pulseaudioFull
