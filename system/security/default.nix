@@ -7,6 +7,8 @@
     ./users.nix
   ];
 
+  systemd.user.services.niri-flake-polkit.enable = false;
+
   security = {
     pam.services.swaylock = {};
     polkit.enable = true;
