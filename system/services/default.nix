@@ -52,6 +52,11 @@ in
     };
   };
 
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
   services = {
     libinput = {
       enable = true;
