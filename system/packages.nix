@@ -18,6 +18,7 @@
       ];
     })
     google-chrome
+    gnupg
     jq
     libnotify
     mypy
