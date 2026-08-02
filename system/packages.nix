@@ -20,6 +20,7 @@
     google-chrome
     gnupg
     jq
+    keepassxc
     libnotify
     mypy
     networkmanagerapplet
