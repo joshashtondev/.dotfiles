@@ -1172,9 +1172,9 @@ static struct key keys_landscape_special[] = {
   {"\\", "|", 1.0, Code, KEY_BACKSLASH, .scheme = 1},
   {";", ":", 1.0, Code, KEY_SEMICOLON, .scheme = 1},
   {"'", "\"", 1.0, Code, KEY_APOSTROPHE, .scheme = 1},
-  {"/", ">", 1.0, Code, KEY_SLASH, .scheme = 1},
   {",", "<", 1.0, Code, KEY_COMMA, .scheme = 1},
-  {".", ">", 1.0, Code, KEY_DOT, .scheme = 1},
+  {".", ">", 1.0, Code, KEY_SLASH, .scheme = 1},
+  {"/", "?", 1.0, Code, KEY_SLASH, .scheme = 1},
 
   {"", "", 0.0, EndRow},
 
@@ -1183,7 +1183,6 @@ static struct key keys_landscape_special[] = {
   {"↓", "↓", 1.25, Code, KEY_DOWN, .scheme = 1},
   {"←", "←", 1.25, Code, KEY_LEFT, .scheme = 1},
   {"→", "→", 1.25, Code, KEY_RIGHT, .scheme = 1},
-  {"/", "?", 1.0, Code, KEY_SLASH, .scheme = 1},
 
   {"⌫", "⌫", 3.0, Code, KEY_BACKSPACE, .scheme = 1},
   {"", "", 0.0, EndRow},

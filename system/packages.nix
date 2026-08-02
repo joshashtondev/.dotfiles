@@ -24,6 +24,7 @@
     mypy
     networkmanagerapplet
     nitrogen
+    ollama
     pasystray
     picom
     pulseaudioFull

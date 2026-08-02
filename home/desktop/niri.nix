@@ -95,6 +95,22 @@ in
           draw-border-with-background = true;
           clip-to-geometry = true;
         }
+        {
+          matches = [
+            {
+              app-id = "google-chrome";
+              title = "^Picture-in-Picture$";
+            }
+          ];
+          open-floating = true;
+          default-column-width = { fixed = 480; };
+          default-window-height = { fixed = 270; };
+          default-floating-position = {
+            x = 32;
+            y = 32;
+            relative-to = "bottom-left";
+          };
+        }
       ];
 
       # Vim Keybindings & Built-in Features
