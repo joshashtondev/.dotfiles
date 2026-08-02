@@ -24,6 +24,7 @@
     networkmanagerapplet
     nitrogen
     ollama
+    pass
     pasystray
     picom
     pulseaudioFull
