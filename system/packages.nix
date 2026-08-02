@@ -8,7 +8,6 @@
     alacritty
     btop
     dconf
-    dunst
     fastfetch
     firefox
     git
