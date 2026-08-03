@@ -112,6 +112,7 @@ in
       $DRY_RUN_CMD mkdir -p $HOME/school
     '';
   };
+
   home.stateVersion = "26.05"; # DO NOT CHANGE
 }
 

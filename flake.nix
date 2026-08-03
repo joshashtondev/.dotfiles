@@ -9,6 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Desktop/Shell/UI
     niri.url = "github:sodiboo/niri-flake";
 
     wvkbd-src = {

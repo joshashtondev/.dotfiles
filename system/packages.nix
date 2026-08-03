@@ -5,9 +5,10 @@
 
   environment.systemPackages = with pkgs; [
     acpi
+    age
     alacritty
+    bitwarden-cli
     btop
-    bws
     dconf
     fastfetch
     firefox
@@ -32,6 +33,8 @@
     picom
     pulseaudioFull
     rnote
+    sops
+    ssh-to-age
     tldr
     tmux
     unrar
