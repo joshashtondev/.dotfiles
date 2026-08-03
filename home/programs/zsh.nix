@@ -2,7 +2,9 @@
 
 {
   programs.zsh = {
-    initExtra = ''
+    enable = true;
+
+    initContent = ''
       if [ -f "/run/secrets/vaultwarden_clientid" ]; then
         export BW_CLIENTID=$(cat /run/secrets/vaultwarden_clientid)
       fi
