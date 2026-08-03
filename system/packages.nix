@@ -7,6 +7,7 @@
     acpi
     alacritty
     btop
+    bws
     dconf
     fastfetch
     firefox
