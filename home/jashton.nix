@@ -32,6 +32,7 @@ in
   '';
 
   home.sessionVariables = {
+    EDITOR = "nvim";
     NIXOS_OZONE_WL = "1";                    # Forces Electron/Chromium apps to use Wayland natively
     GTK_IM_MODULE = "wayland";               # Forces GTK apps to use Wayland text-input protocols
     QT_IM_MODULE = "wayland";                # Forces Qt apps to use Wayland text-input protocols
