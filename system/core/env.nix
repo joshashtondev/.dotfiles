@@ -43,5 +43,12 @@
         "git"
       ];
     };
+
+    interactiveShellInit = ''
+      if [ -f "/run/secrets/vaultwarden_clientid" ]; then
+        export BW_CLIENTID=$(cat /run/secrets/vaultwarden_clientid)
+        export BW_CLIENTSECRET=$(cat /run/secrets/vaultwarden_clientsecret)
+      fi
+    '';
   };
 }
