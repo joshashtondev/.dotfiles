@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./sops.nix
     ./sudo.nix
     ./systemd.nix
     ./users.nix

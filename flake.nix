@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Desktop/Shell/UI
     niri.url = "github:sodiboo/niri-flake";
 
@@ -33,7 +38,7 @@
     };
   };
   
-  outputs = { nixpkgs, home-manager, niri, dms, dms-plugin-registry, danksearch, wvkbd-src, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, sops-nix, niri, dms, dms-plugin-registry, danksearch, wvkbd-src, ... }@inputs: {
     nixosConfigurations = {
       thinkpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -44,6 +49,7 @@
 
           niri.nixosModules.niri
           dms-plugin-registry.nixosModules.default
+          sops-nix.nixosModules.sops
 
           home-manager.nixosModules.home-manager
           {
