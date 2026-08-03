@@ -63,7 +63,7 @@ in
     };
 
     openssh = {
-      enable = false;
+      enable = true;
     };
 
     upower.enable = true;
